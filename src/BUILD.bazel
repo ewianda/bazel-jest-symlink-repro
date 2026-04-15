@@ -2,9 +2,18 @@ load("@aspect_rules_js//js:defs.bzl", "js_library")
 load("@aspect_rules_jest//jest:defs.bzl", "jest_test")
 
 js_library(
+    name = "store",
+    srcs = ["store.ts"],
+    deps = [
+        "//:node_modules/react",
+    ],
+)
+
+js_library(
     name = "hook",
     srcs = ["hook.ts"],
     deps = [
+        ":store",
         "//:node_modules/@tanstack/react-query",
         "//:node_modules/react",
     ],
@@ -16,6 +25,7 @@ jest_test(
     config = "//:jest_config",
     data = [
         ":hook",
+        ":store",
         "//:node_modules/@swc/core",
         "//:node_modules/@swc/jest",
         "//:node_modules/@tanstack/react-query",

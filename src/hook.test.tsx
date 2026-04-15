@@ -3,6 +3,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
 import { useDeleteItem } from './hook'
 
+// This jest.mock forces Jest to resolve and load './store' from the
+// symlinked source file's real path. Node's require() follows the symlink
+// to the host filesystem and loads React from host node_modules.
+// Meanwhile, @testing-library/react loads React from the sandbox node_modules.
+// Two React instances → useContext returns null → test crashes.
+jest.mock('./store')
+
 describe('useDeleteItem', () => {
   const queryClient = new QueryClient({
     defaultOptions: { queries: { retry: false } },
