@@ -16,4 +16,8 @@ js_library(
     visibility = ["//visibility:public"],
 )
 
-exports_files(["package.json"])
+js_library(
+    name = "package_json",
+    srcs = ["package.json"],
+    visibility = ["//visibility:public"],
+)
