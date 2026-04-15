@@ -8,7 +8,9 @@ import { useDeleteItem } from './hook'
 // to the host filesystem and loads React from host node_modules.
 // Meanwhile, @testing-library/react loads React from the sandbox node_modules.
 // Two React instances → useContext returns null → test crashes.
-jest.mock('./store')
+jest.mock('./store', () => ({
+  useAppDispatch: () => jest.fn(),
+}))
 
 describe('useDeleteItem', () => {
   const queryClient = new QueryClient({
