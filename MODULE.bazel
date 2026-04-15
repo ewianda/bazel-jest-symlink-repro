@@ -1,0 +1,13 @@
+module(name = "jest_symlink_repro", version = "0.0.0")
+
+bazel_dep(name = "aspect_rules_js", version = "2.8.3")
+bazel_dep(name = "aspect_rules_jest", version = "0.25.2")
+bazel_dep(name = "rules_nodejs", version = "6.7.3")
+bazel_dep(name = "bazel_skylib", version = "1.9.0")
+
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
+npm.npm_translate_lock(
+    name = "npm",
+    pnpm_lock = "//:pnpm-lock.yaml",
+)
+use_repo(npm, "npm")
