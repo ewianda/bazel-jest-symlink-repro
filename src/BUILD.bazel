@@ -1,9 +1,14 @@
 load("@aspect_rules_jest//jest:defs.bzl", "jest_test")
 load("@aspect_rules_js//js:defs.bzl", "js_library")
 
+# Mimics BenchSci's ts_project macro: data = srcs + data
+# This causes source files to appear as BOTH copies (from srcs)
+# AND symlinks (from data) in the runfiles tree.
+# Jest may resolve the symlink version, escaping the sandbox.
 js_library(
     name = "store",
     srcs = ["store.ts"],
+    data = ["store.ts"],
     deps = [
         "//:node_modules/react",
     ],
@@ -12,6 +17,7 @@ js_library(
 js_library(
     name = "hook",
     srcs = ["hook.ts"],
+    data = ["hook.ts"],
     deps = [
         ":store",
         "//:node_modules/@tanstack",
