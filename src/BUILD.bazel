@@ -8,7 +8,6 @@ load("@aspect_rules_js//js:defs.bzl", "js_library")
 js_library(
     name = "store",
     srcs = ["store.ts"],
-    data = ["store.ts"],
     deps = [
         "//:node_modules/react",
     ],
@@ -17,7 +16,6 @@ js_library(
 js_library(
     name = "hook",
     srcs = ["hook.ts"],
-    data = ["hook.ts"],
     deps = [
         ":store",
         "//:node_modules/@tanstack",
