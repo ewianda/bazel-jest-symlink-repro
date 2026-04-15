@@ -1,5 +1,5 @@
-load("@aspect_rules_js//js:defs.bzl", "js_library")
 load("@aspect_rules_jest//jest:defs.bzl", "jest_test")
+load("@aspect_rules_js//js:defs.bzl", "js_library")
 
 js_library(
     name = "store",
@@ -14,24 +14,23 @@ js_library(
     srcs = ["hook.ts"],
     deps = [
         ":store",
-        "//:node_modules/@tanstack/react-query",
+        "//:node_modules/@tanstack",
         "//:node_modules/react",
     ],
 )
 
 jest_test(
     name = "hook.test",
-    srcs = ["hook.test.tsx"],
     config = "//:jest_config",
     data = [
+        "hook.test.tsx",
         ":hook",
         ":store",
         "//:node_modules/@swc/core",
         "//:node_modules/@swc/jest",
-        "//:node_modules/@tanstack/react-query",
+        "//:node_modules/@tanstack",
         "//:node_modules/@testing-library/react",
-        "//:node_modules/@types/jest",
-        "//:node_modules/@types/react",
+        "//:node_modules/@types",
         "//:node_modules/jest",
         "//:node_modules/jest-environment-jsdom",
         "//:node_modules/react",
